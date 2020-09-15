@@ -125,3 +125,34 @@ $duck_2->set_fly_behavior(new HightFlyBehavior());
 $duck_2->set_swim_behavior(new NoSwimBehavior());
 $duck_2->fly();
 $duck_2->swim();
+
+
+
+
+trait message1 {
+  public function msg1() {
+    echo "message1";
+  }
+}
+
+trait message2 {
+  public function msg2() {
+    echo "message2";
+  }
+}
+
+class Welcome1 {
+  use message1;
+}
+
+class Welcome2 {
+  use message1, message2;
+}
+
+echo "<br>";
+$obj = new Welcome1();
+$obj->msg1();
+echo "<br>";
+$obj2 = new Welcome2();
+$obj2->msg1();
+$obj2->msg2();
