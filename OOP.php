@@ -128,7 +128,7 @@ $duck_2->swim();
 
 
 
-
+// trait
 trait message1 {
   public function msg1() {
     echo "message1";

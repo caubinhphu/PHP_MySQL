@@ -1,0 +1,5 @@
+text: hello
+textarea: blah blah ....
+date: 2020-09-26
+radio: 2
+select: 3
