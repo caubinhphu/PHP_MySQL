@@ -28,57 +28,32 @@ while(!feof($file)) {
 fclose($file);
 
 
+// cookies
+echo "<br><strong>Cookies</strong><br>";
+setcookie("id", "23qbwe23v4q62<>34vq23", time() + 1000000, "/");
+setrawcookie("idd", "23qbwe23v4q6<>234vq23", time() + 1000000, "/");
+echo $_COOKIE["id"];
+echo "<br>";
+echo $_COOKIE["idd"];
 
+show_cookie('idd');
 
-
-
-// upload file
-echo "<strong>Upload file</strong>";
-$target_dir = "uploads/";
-$target_file = $target_dir . basename($_FILES["file"]["name"]);
-// print_r($_FILES["file"]);
-$uploadOk = 1;
-$imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-// print_r($imageFileType);
-// Check if image file is a actual image or fake image
-if(isset($_POST["submit"])) {
-  $check = getimagesize($_FILES["file"]["tmp_name"]);
-  if($check !== false) {
-    echo "File is an image - " . $check["mime"] . ".";
-    $uploadOk = 1;
+function show_cookie($cookie) {
+  if(!isset($_COOKIE[$cookie])) {
+    echo "<br>Cookie '$cookie' is not set!";
   } else {
-    echo "File is not an image.";
-    $uploadOk = 0;
+    echo "<br>Cookie '$cookie' is set!<br>";
+    echo "Value is: " . $_COOKIE[$cookie];
   }
 }
 
-// Check if file already exists
-if (file_exists($target_file)) {
-  echo "Sorry, file already exists.";
-  $uploadOk = 0;
+function remove_cookie($cookie) {
+  setcookie($cookie, "", time() - 100000, "/");
 }
+?>
+<a href="/php_mysql/advanced.php?remove=true">Remove cookie idd</a>
 
-// Check file size
-if ($_FILES["file"]["size"] > 500000) {
-  echo "Sorry, your file is too large.";
-  $uploadOk = 0;
-}
-
-// Allow certain file formats
-if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-&& $imageFileType != "gif" ) {
-  echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-  $uploadOk = 0;
-}
-
-// Check if $uploadOk is set to 0 by an error
-if ($uploadOk == 0) {
-  echo "Sorry, your file was not uploaded.";
-// if everything is ok, try to upload file
-} else {
-  if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
-    echo "The file ". basename( $_FILES["file"]["name"]). " has been uploaded.";
-  } else {
-    echo "Sorry, there was an error uploading your file.";
-  }
+<?php
+if (isset($_GET['remove'])) {
+  remove_cookie('idd');
 }
