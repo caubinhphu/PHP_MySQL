@@ -57,3 +57,22 @@ function remove_cookie($cookie) {
 if (isset($_GET['remove'])) {
   remove_cookie('idd');
 }
+
+
+// JSON
+echo "<br><strong>JSON</strong><br>";
+$data= array("Teo"=>10, "Ty"=>9, "Tet"=>11);
+$json = json_encode($data);
+echo $json;
+$data_decode = json_decode($json);
+print_r($data_decode);
+echo $data_decode->Ty;
+
+// Exception
+echo "<br><strong>Exception</strong><br>";
+try {
+  throw new Exception("Error Processing Request");
+} catch (Exception $err) {
+  print_r($err);
+  echo "<br>Message: ", $err->getMessage() ;
+}
