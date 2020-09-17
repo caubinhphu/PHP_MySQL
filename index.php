@@ -18,5 +18,14 @@
   <div>
     <a href="/php_mysql/advanced.php">PHP advanced</a>
   </div>
+  <div>
+    <a href="/php_mysql/upload.php">PHP upload</a>
+  </div>
+  <div>
+    <a href="/php_mysql/session.php">PHP session</a>
+  </div>
+  <div>
+    <a href="/php_mysql/todo_app.php">Todo app</a>
+  </div>
 </body>
 </html>
